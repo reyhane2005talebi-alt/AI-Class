@@ -1,0 +1,42 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+apple_width = np.random.randint(3,6,50)
+apple_height = np.random.randint(3,6,50)
+
+benana_width = np.random.randint(3,6,50)
+benana_height = np.random.randint(6,10,50)
+
+X_Train = []
+Y_Train = []
+
+for i in range(50):
+    X_Train.append([apple_width[i],apple_height[i]])
+    Y_Train.append(0)
+
+for i in range(50):
+    X_Train.append([benana_width[i],benana_height[i]]) 
+    Y_Train.append(1)
+
+print(X_Train)
+print(Y_Train)
+
+X_Train = np.array(X_Train)
+
+plt.scatter(X_Train[:50,0],X_Train[:50,1],color='red',label='apple')
+plt.scatter(X_Train[50:,0],X_Train[50:,1],color='yellow',label='benana')
+
+new_fruit = [4,5]
+plt.scatter(new_fruit[0],new_fruit[1],color='blue',marker='*',s=200,label='new fruit')
+
+plt.xlabel('width')
+plt.ylabel('height')
+plt.legend()
+plt.show()
+
+distances = []
+for fruit in X_Train:
+    d = np.sqrt((new_fruit[0] - fruit[0])**2 + (new_fruit[1] - fruit[1])**2)
+    distances.append(d)
+
+print(distances)
